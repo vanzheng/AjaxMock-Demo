@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>MockJS demo</title>
+
+    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="mock-min.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+    Mock.mock('gettableinfo', {
+        'name': 'conference table',
+        'length': 300,
+        'width': 100,
+        'height': 80,
+        'weight': '50KG'
+    });
+
+    $.ajax({
+        url: 'gettableinfo',
+        type: 'GET',
+        dataType: 'json',
+        success: function(resp) {
+            console.log(JSON.stringify(resp));
+        }
+    });
+
+    Mock.mock(/(list)+/, {
+        'title': 'china cities',
+        'name': '@name',
+        'location': 'china',
+        'cities|5-10': {
+            '100000': '北京市',
+            '200000': '上海市',
+            '300000': '广州市',
+            '400000': '重庆市',
+            '500000': '杭州市',
+            '600001': '宁波市',
+            '600002': '苏州市',
+            '600003': '南京市'
+        },
+        'weather|6': 10,
+        'infos|1-2': [{
+            '北京': 1,
+            'isdirectly': true,
+            'year': 2000
+        }, {
+            '上海': 1,
+            'isdirectly': true,
+            'year': 200
+        }],
+        'number|10': '1',
+        'number2|3-6': '25'
+    });
+
+    $.ajax({
+        url: 'getcitylist',
+        type: 'GET',
+        dataType: 'json',
+        success: function(resp) {
+            console.log(JSON.stringify(resp));
+        }
+    });
+    </script>
+</body>
+
+</html>

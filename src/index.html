@@ -28,7 +28,7 @@
         }
     });
 
-    Mock.mock(/(list)+/, {
+    Mock.mock(/(citylist)+/, {
         'title': 'china cities',
         'name': '@name',
         'location': 'china',
@@ -58,6 +58,17 @@
 
     $.ajax({
         url: 'getcitylist',
+        type: 'GET',
+        dataType: 'json',
+        success: function(resp) {
+            console.log(JSON.stringify(resp));
+        }
+    });
+
+    //mockfile 'mock/weatherdata.js'
+
+    $.ajax({
+        url: 'getweatherlist',
         type: 'GET',
         dataType: 'json',
         success: function(resp) {
